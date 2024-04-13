@@ -1,0 +1,1 @@
+{"rsync":{"/ansible-aws/":{"type":"rsync","guestpath":"/ansible-aws","hostpath":"/mnt/c/vagrant-labs/vg-ansible-aws-ec2/ansible-aws","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}},"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/mnt/c/vagrant-labs/vg-ansible-aws-ec2","disabled":false,"__vagrantfile":true}}}

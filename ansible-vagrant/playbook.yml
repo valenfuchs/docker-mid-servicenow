@@ -1,0 +1,82 @@
+- hosts: all
+  become: yes
+  gather_facts: false
+  tasks:
+  - name: Install docker packages
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    with_items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python-pip
+      - python3-pip
+    tags:
+      - docker
+  - name: Add Docker s official GPG key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+    tags:
+      - docker
+  - name: Verify that we have the key with the fingerprint
+    remote_user: ubuntu
+    apt_key:
+      id: 0EBFCD88
+      state: present
+    tags:
+      - docker
+  - name: Set up the stable repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
+      state: present
+      update_cache: yes
+    tags:
+      - docker
+  - name: Update apt packages
+    apt:
+      update_cache: yes
+    tags:
+      - docker
+  - name: Install docker
+    apt:
+      name: docker-ce
+      state: present
+      update_cache: yes
+    #notify: Start docker on boot
+    tags:
+      - docker
+    
+  #- name: Install docker compose
+  #  apt:
+  #    name: docker-compose-plugin
+  #    state: present
+  #    update_cache: yes
+    #notify: Start docker on boot
+  #  tags:
+  #    - docker
+  - name: Add remote "vagrant" user to "docker" group   # tambien lo podriamos hacer tirando comandos pero esto es mas simple de entender
+    user:
+      name: "vagrant"
+      group: "docker"
+      append: yes
+    tags:
+      - docker
+  - name: Install ansible-lint and boto
+    pip: name="{{ item }}"
+    with_items:
+      - docker
+#  - name: Create a directory if it does not exist
+#    ansible.builtin.file:
+#      path: /usr/local/lib/docker/cli-plugins/docker-compose
+#      state: directory
+#      mode: '0755'
+#    
+#  - name: Install docker-compose
+#    get_url: 
+#      url: https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-linux-x86_64
+#      dest: /usr/local/lib/docker/cli-plugins/docker-compose
+#      mode: 0755
