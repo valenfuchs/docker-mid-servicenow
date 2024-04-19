@@ -28,8 +28,8 @@ Vagrant.configure(2) do |config|
 
     # Configure the VirtualBox parameters
     config.vm.provider "virtualbox" do |vb|
-        vb.name = "ansible-docker"
-        vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected", "--memory", "1024" ]
+        vb.name = "ansible-docker" 
+        vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected", "--memory", "2048" ]
     end
 
 

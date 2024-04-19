@@ -1,0 +1,14 @@
+- name: Run using a project directory
+  hosts: ubuntu
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Tear down existing services
+      community.docker.docker_compose_v2:
+        project_src: /ansible-docker
+        state: absent
+
+    - name: Create and start services
+      community.docker.docker_compose_v2:
+        project_src: /ansible-docker
+      register: output
