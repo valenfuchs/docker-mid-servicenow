@@ -8,9 +8,9 @@ services:
       - "8080:8080"
 
     environment:
-      MID_INSTANCE_URL: "https://dev256798.service-now.com"  
+      MID_INSTANCE_URL: #"https://devx.service-now.com"  
       MID_INSTANCE_USERNAME: "admin"  
-      MID_INSTANCE_PASSWORD: "^YPi7L-Fmc0u" 
+      MID_INSTANCE_PASSWORD: #password 
       MID_SERVER_NAME: "vfuchs_mid"
 
 
