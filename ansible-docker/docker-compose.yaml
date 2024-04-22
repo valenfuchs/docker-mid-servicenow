@@ -14,8 +14,3 @@ services:
       MID_SERVER_NAME: "vfuchs_mid"
 
 
-#    environment:
-#     - MID_INSTANCE_URL=https://dev256798.service-now.com
-#     - MID_INSTANCE_USERNAME=admin
-#     - MID_INSTANCE_PASSWORD=^YPi7L-Fmc0u
-#     - MID_SERVER_NAME=vfuchs_mid
